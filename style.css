@@ -1,204 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WhatsApp Button Generator</title>
+  <meta charset="UTF-8">
+  <title>Fun WhatsApp Button Generator</title>
   <style>
     body {
+      background: #fdf6e3;
       font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: linear-gradient(135deg, #e0fffc, #ffe0fa);
-      color: #2c2c2c;
       padding: 2rem;
-      max-width: 900px;
-      margin: auto;
+      color: #333;
     }
 
     h1 {
-      text-align: center;
       font-size: 2.5rem;
-      color: #25D366;
-      transform: rotate(-2deg);
+      color: #ff1493;
+      text-shadow: 2px 2px #00ffff;
     }
 
-    form {
-      background-color: #ffffffcc;
-      padding: 2rem;
-      border: 4px dashed #25D366;
-      border-radius: 16px;
-      box-shadow: 4px 4px 12px rgba(0,0,0,0.2);
-      margin-top: 2rem;
+    .form-group {
+      margin-bottom: 1.5rem;
     }
 
     label {
       font-weight: bold;
       display: block;
-      margin-top: 1rem;
+      margin-bottom: 0.5rem;
     }
 
-    input, textarea, select {
+    input, select, textarea {
+      padding: 0.5rem;
       width: 100%;
-      padding: 0.75rem;
-      border: 2px solid #25D366;
+      border: 2px dashed #ff69b4;
       border-radius: 8px;
-      margin-top: 0.25rem;
-      background-color: #f0fff4;
+      background: #fff0f5;
     }
 
     button {
-      margin-top: 1.5rem;
-      background-color: #25D366;
-      color: white;
+      background: #00ffcc;
+      color: #000;
+      border: 3px dotted #ff00ff;
       padding: 1rem 2rem;
+      border-radius: 12px;
       font-size: 1.2rem;
-      border: none;
-      border-radius: 8px;
       cursor: pointer;
-      transform: rotate(-1deg);
+      box-shadow: 3px 3px 0px #ff1493;
+      transition: all 0.2s ease-in-out;
     }
 
     button:hover {
-      background-color: #1eb95a;
+      transform: scale(1.05) rotate(-2deg);
     }
 
-    #result {
-      margin-top: 3rem;
-      background-color: #fff9f9;
-      padding: 1.5rem;
-      border: 4px dotted #ff9ccf;
-      border-radius: 12px;
-    }
-
-    textarea#outputCode {
-      width: 100%;
-      height: 300px;
+    textarea#output {
+      margin-top: 2rem;
+      background: #e0ffff;
       font-family: monospace;
-      background-color: #f9f9f9;
-      padding: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      margin-top: 1rem;
     }
 
     .preview {
       margin-top: 2rem;
       padding: 1rem;
-      background-color: #f0fffb;
-      border: 3px dashed #25D366;
+      border: 3px solid #00f;
       border-radius: 12px;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .preview img {
-      border-radius: 50%;
+      background: #ffffcc;
     }
   </style>
 </head>
 <body>
-  <h1>WhatsApp Button Generator 🤖✨</h1>
+  <h1>💬 WhatsApp Button Generator 🎉</h1>
 
-  <form id="waForm">
+  <div class="form-group">
     <label>Button Text</label>
-    <input type="text" id="buttonName" value="Chat with Pavel (not-AI)" />
-
-    <label>Brand Name</label>
-    <input type="text" id="brandName" value="Pavel (not-AI)" />
-
-    <label>Brand Subtitle</label>
-    <input type="text" id="brandSubtitleText" value="Replies within a few days" />
-
-    <label>Brand Image URL</label>
-    <input type="text" id="brandImageUrl" value="https://media.licdn.com/dms/image/v2/D5603AQESkVRhnjKKGw/profile-displayphoto-shrink_400_400/B56ZQ6t.4mH0Ag-/0/1736151921642?e=1752105600&v=beta&t=ZIg-_vG3rOizD8T7IuMfcyqbfzkQSUFZlUdWg6FBTe8" />
-
-    <label>Button Icon Size (px)</label>
-    <input type="number" id="buttonIconSize" value="24" />
-
-    <label>Button Size</label>
-    <select id="buttonSize">
-      <option value="small">Small</option>
-      <option value="medium" selected>Medium</option>
-      <option value="large">Large</option>
-    </select>
-
-    <label>Button Position</label>
-    <select id="buttonPosition">
-      <option value="left">Left</option>
-      <option value="right" selected>Right</option>
-    </select>
-
-    <label>Call to Action Text</label>
-    <input type="text" id="callToAction" value="Start" />
-
-    <label>WhatsApp Phone Number</label>
-    <input type="text" id="phoneNumber" value="13322418002" />
-
-    <label>Welcome Message</label>
-    <input type="text" id="welcomeMessage" value="Hello there 👋" />
-
-    <label>Prefill Message</label>
-    <textarea id="prefillMessage">Hi, I want to chat with Pavel</textarea>
-
-    <button type="submit">🎉 Generate Code</button>
-  </form>
-
-  <div id="preview" class="preview" style="display:none">
-    <img id="previewImg" src="" width="48" height="48" />
-    <div>
-      <strong id="previewBrand">Chat with Pavel (not-AI)</strong><br />
-      <small id="previewSubtitle">Replies within a few days</small><br />
-      <button style="margin-top:5px; background:#25D366; color:white; border:none; padding:0.4rem 1rem; border-radius:4px;">
-        <span id="previewButtonText">Start Chat</span>
-      </button>
-    </div>
+    <input id="button-text" value="Chat with Megan (AI)">
   </div>
 
-  <div id="result" style="display:none;">
-    <h3>🧩 Generated Code</h3>
-    <textarea id="outputCode" readonly></textarea>
-    <button onclick="copyScript()">📋 Copy Code</button>
+  <div class="form-group">
+    <label>Brand Name</label>
+    <input id="brand-name" value="Megan (AI)">
+  </div>
+
+  <div class="form-group">
+    <label>Brand Subtitle</label>
+    <input id="brand-subtitle" value="Replies within 10 seconds">
+  </div>
+
+  <div class="form-group">
+    <label>Brand Image URL</label>
+    <input id="brand-image-url" value="https://cdn.prod.website-files.com/65c0a21468a11124c832dc8b/677bda359b011e88ced7c554_setter%20ai%20megan.jpg">
+  </div>
+
+  <div class="form-group">
+    <label>Button Icon Size (px)</label>
+    <input type="number" id="button-icon-size" value="24">
+  </div>
+
+  <div class="form-group">
+    <label>Button Size</label>
+    <select id="button-size">
+      <option>Small</option>
+      <option selected>Medium</option>
+      <option>Large</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Button Position</label>
+    <select id="button-position">
+      <option>Left</option>
+      <option selected>Right</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Call to Action Text</label>
+    <input id="call-to-action-text" value="Start Chat">
+  </div>
+
+  <div class="form-group">
+    <label>WhatsApp Phone Number</label>
+    <input id="whatsapp-phone-number" value="13322418002">
+  </div>
+
+  <div class="form-group">
+    <label>Welcome Message</label>
+    <input id="welcome-message" value="Hi there 👋">
+  </div>
+
+  <div class="form-group">
+    <label>Prefill Message</label>
+    <input id="prefill-message" value="Hi, I want to learn more about Setter AI!">
+  </div>
+
+  <button id="generate-btn">🚀 Generate Button Code</button>
+
+  <textarea id="output" readonly rows="10"></textarea>
+
+  <div class="preview">
+    <strong>Preview:</strong> <span id="live-preview">👀 Your button preview will go here!</span>
   </div>
 
   <script>
-    document.getElementById('waForm').addEventListener('submit', function (e) {
-      e.preventDefault();
+    document.getElementById('generate-btn').addEventListener('click', function () {
+      const buttonText = document.getElementById('button-text').value;
+      const brandName = document.getElementById('brand-name').value;
+      const brandSubtitle = document.getElementById('brand-subtitle').value;
+      const brandImageUrl = document.getElementById('brand-image-url').value;
+      const buttonIconSize = document.getElementById('button-icon-size').value;
+      const buttonSize = document.getElementById('button-size').value;
+      const buttonPosition = document.getElementById('button-position').value;
+      const callToAction = document.getElementById('call-to-action-text').value;
+      const phoneNumber = document.getElementById('whatsapp-phone-number').value;
+      const welcomeMessage = document.getElementById('welcome-message').value;
+      const prefillMessage = document.getElementById('prefill-message').value;
 
-      const config = {
-        buttonName: document.getElementById('buttonName').value,
-        buttonIconSize: parseInt(document.getElementById('buttonIconSize').value),
-        brandImageUrl: document.getElementById('brandImageUrl').value,
-        brandName: document.getElementById('brandName').value,
-        brandSubtitleText: document.getElementById('brandSubtitleText').value,
-        buttonSize: document.getElementById('buttonSize').value,
-        buttonPosition: document.getElementById('buttonPosition').value,
-        callToAction: document.getElementById('callToAction').value,
-        phoneNumber: document.getElementById('phoneNumber').value,
-        welcomeMessage: document.getElementById('welcomeMessage').value,
-        prefillMessage: document.getElementById('prefillMessage').value,
-        baseUrl: 'https://cdn.jsdelivr.net/gh/trysetter/button-generator-0001@main'
-      };
+      const scriptCode = `<!-- WA Button START/ -->
+<script>
+  window._whatsappConfig = {
+    buttonName: '${buttonText}',
+    buttonIconSize: ${buttonIconSize},
+    brandImageUrl: '${brandImageUrl}',
+    brandName: '${brandName}',
+    brandSubtitleText: '${brandSubtitle}',
+    buttonSize: '${buttonSize.toLowerCase()}',
+    buttonPosition: '${buttonPosition.toLowerCase()}',
+    callToAction: '${callToAction}',
+    phoneNumber: '${phoneNumber}',
+    welcomeMessage: \`${welcomeMessage}\`,
+    prefillMessage: \`${prefillMessage}\`,
+    baseUrl: 'https://cdn.jsdelivr.net/gh/trysetter/button-generator-0001@main'
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/gh/trysetter/button-generator-0001@main/embed.js" async></script>
+<!-- WA Button END/ -->`;
 
-      // Update preview
-      document.getElementById('previewImg').src = config.brandImageUrl;
-      document.getElementById('previewBrand').textContent = config.brandName;
-      document.getElementById('previewSubtitle').textContent = config.brandSubtitleText;
-      document.getElementById('previewButtonText').textContent = config.callToAction;
-      document.getElementById('preview').style.display = 'flex';
+      document.getElementById('output').value = scriptCode;
 
-      const jsonString = JSON.stringify(config, null, 2);
-      const output = `<!-- WA Button START/ -->\n<script>\n  window._whatsappConfig = ${jsonString};\n<\/script>\n<script src=\"https://cdn.jsdelivr.net/gh/trysetter/button-generator-0001@main/embed.js\" async><\/script>\n<!-- WA Button END/ -->`;
-
-      document.getElementById('outputCode').value = output;
-      document.getElementById('result').style.display = 'block';
+      document.getElementById('live-preview').innerHTML = `
+        <img src="${brandImageUrl}" style="width: 32px; border-radius: 50%; vertical-align: middle;"> 
+        <strong>${buttonText}</strong> - <em>${brandSubtitle}</em>
+      `;
     });
-
-    function copyScript() {
-      const textarea = document.getElementById('outputCode');
-      textarea.select();
-      document.execCommand('copy');
-      alert('Code copied to clipboard! 🥳');
-    }
   </script>
 </body>
 </html>
