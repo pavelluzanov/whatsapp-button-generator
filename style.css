@@ -71,22 +71,22 @@
 
   <div class="form-group">
     <label>Button Text</label>
-    <input id="button-text" value="Chat with Megan (AI)">
+    <input id="button-text" value="Chat with Pavel (not-AI)">
   </div>
 
   <div class="form-group">
     <label>Brand Name</label>
-    <input id="brand-name" value="Megan (AI)">
+    <input id="brand-name" value="Pavel (not-AI)">
   </div>
 
   <div class="form-group">
     <label>Brand Subtitle</label>
-    <input id="brand-subtitle" value="Replies within 10 seconds">
+    <input id="brand-subtitle" value="Replies within a few days">
   </div>
 
   <div class="form-group">
     <label>Brand Image URL</label>
-    <input id="brand-image-url" value="https://cdn.prod.website-files.com/65c0a21468a11124c832dc8b/677bda359b011e88ced7c554_setter%20ai%20megan.jpg">
+    <input id="brand-image-url" value="https://media.licdn.com/dms/image/v2/D5603AQESkVRhnjKKGw/profile-displayphoto-shrink_400_400/B56ZQ6t.4mH0Ag-/0/1736151921642?e=1752105600&v=beta&t=ZIg-_vG3rOizD8T7IuMfcyqbfzkQSUFZlUdWg6FBTe8">
   </div>
 
   <div class="form-group">
@@ -118,17 +118,17 @@
 
   <div class="form-group">
     <label>WhatsApp Phone Number</label>
-    <input id="whatsapp-phone-number" value="13322418002">
+    <input id="whatsapp-phone-number" value="601126918969">
   </div>
 
   <div class="form-group">
     <label>Welcome Message</label>
-    <input id="welcome-message" value="Hi there 👋">
+    <input id="welcome-message" value="Hello there 👋">
   </div>
 
   <div class="form-group">
     <label>Prefill Message</label>
-    <input id="prefill-message" value="Hi, I want to learn more about Setter AI!">
+    <input id="prefill-message" value="Hi, Let's chat!">
   </div>
 
   <button id="generate-btn">🚀 Generate Button Code</button>
@@ -167,10 +167,10 @@
     phoneNumber: '${phoneNumber}',
     welcomeMessage: \`${welcomeMessage}\`,
     prefillMessage: \`${prefillMessage}\`,
-    baseUrl: 'https://cdn.jsdelivr.net/gh/trysetter/button-generator-0001@main'
+    baseUrl: 'https://www.linkedin.com/in/luzanovpavel/'
   };
 </script>
-<script src="https://cdn.jsdelivr.net/gh/trysetter/button-generator-0001@main/embed.js" async></script>
+<script src="https://pavelluzanov.github.io/whatsapp-embed/embed.js" async></script>
 <!-- WA Button END/ -->`;
 
       document.getElementById('output').value = scriptCode;
