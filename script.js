@@ -13,7 +13,7 @@ document.getElementById('waForm').addEventListener('submit', function (e) {
     phoneNumber: document.getElementById('phoneNumber').value,
     welcomeMessage: document.getElementById('welcomeMessage').value,
     prefillMessage: document.getElementById('prefillMessage').value,
-    baseUrl: 'https://cdn.jsdelivr.net/gh/trysetter/button-generator-0001@main'
+    baseUrl: 'https://www.linkedin.com/in/luzanovpavel/'
   };
 
   const jsonString = JSON.stringify(config, null, 2);
@@ -22,7 +22,7 @@ document.getElementById('waForm').addEventListener('submit', function (e) {
 <script>
   window._whatsappConfig = ${jsonString};
 </script>
-<script src="https://cdn.jsdelivr.net/gh/trysetter/button-generator-0001@main/embed.js" async></script>
+<script src="https://pavelluzanov.github.io/whatsapp-embed/embed.js" async></script>
 <!-- WA Button END/ -->`;
 
   document.getElementById('outputCode').value = output;
