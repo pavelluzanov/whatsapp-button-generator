@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WhatsApp Button Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>WhatsApp Button Generator</h1>
+  <form id="whatsappForm">
+    <label>Phone Number (with country code):</label>
+    <input type="text" id="phone" placeholder="+1234567890" required />
+
+    <label>Pre-filled Message:</label>
+    <textarea id="message" placeholder="Type your message here..."></textarea>
+
+    <button type="submit">Generate WhatsApp Link</button>
+  </form>
+
+  <div id="output" style="display:none;">
+    <h3>Your Button:</h3>
+    <a id="whatsappLink" target="_blank" class="wa-button">Open in WhatsApp</a>
+    <p><strong>Link:</strong> <span id="linkText"></span></p>
+    <button onclick="copyLink()">Copy Link</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
