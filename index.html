@@ -7,48 +7,48 @@
   <style>
     body {
       font-family: sans-serif;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 1rem;
+      padding: 40px;
+      background: #f0f0f0;
     }
     label {
       display: block;
-      margin-top: 1rem;
-      font-weight: bold;
+      margin-top: 20px;
     }
     input, select, textarea {
       width: 100%;
       padding: 8px;
-      margin-top: 0.3rem;
-      box-sizing: border-box;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
     }
     button {
-      margin-top: 1rem;
-      padding: 10px 20px;
-      background-color: #25D366;
-      border: none;
+      margin-top: 20px;
+      padding: 10px 16px;
+      background: #25D366;
       color: white;
+      border: none;
+      border-radius: 6px;
       font-weight: bold;
       cursor: pointer;
-      border-radius: 5px;
+    }
+    textarea#output {
+      font-family: monospace;
     }
     .footer {
-      margin-top: 2rem;
-      font-size: 14px;
+      margin-top: 40px;
       text-align: center;
-      color: #666;
-    }
-    #buttonPreview {
-      margin-top: 1.5rem;
+      font-size: 14px;
+      color: #888;
     }
   </style>
 </head>
 <body>
+
   <h1>WhatsApp Button Generator</h1>
 
-  <form id="waForm">
+  <form id="waForm" onsubmit="event.preventDefault(); generateButtonCode();">
     <label>Button Text</label>
-    <input type="text" id="buttonName" value="Chat with Pavel (not-AI)" />
+    <input type="text" id="callToAction" value="Start Chat" />
 
     <label>Brand Name</label>
     <input type="text" id="brandName" value="Pavel (not-AI)" />
@@ -60,7 +60,7 @@
     <input type="text" id="brandImageUrl" value="https://media.licdn.com/dms/image/v2/D5603AQESkVRhnjKKGw/profile-displayphoto-shrink_400_400/B56ZQ6t.4mH0Ag-/0/1736151921642?e=1752105600&v=beta&t=ZIg-_vG3rOizD8T7IuMfcyqbfzkQSUFZlUdWg6FBTe8" />
 
     <label>Button Icon Size (px)</label>
-    <input type="number" id="buttonIconSize" value="24" />
+    <input type="number" id="buttonIconSize" value="16" />
 
     <label>Button Size</label>
     <select id="buttonSize">
@@ -75,13 +75,10 @@
       <option value="right" selected>Right</option>
     </select>
 
-    <label>Call to Action Text</label>
-    <input type="text" id="callToAction" value="Start Chat" />
-
     <label>WhatsApp Phone Number</label>
     <input type="text" id="phoneNumber" value="601126918969" />
 
-    <label>Welcome Message</label>
+    <label>Welcome Message (optional, not used in link)</label>
     <input type="text" id="welcomeMessage" value="Hello there 👋" />
 
     <label>Prefill Message</label>
@@ -90,47 +87,44 @@
     <button type="submit">Generate Button Code</button>
   </form>
 
-  <label style="margin-top: 1rem;">Generated Code</label>
-  <textarea id="output" rows="8" readonly></textarea>
-  <button id="copyBtn">Copy Code</button>
+  <label>Generated Code</label>
+  <textarea id="output" rows="12"></textarea>
+  <button onclick="copyCode()">Copy Code</button>
 
-  <div id="buttonPreview"></div>
-
-  <div class="footer">💜 Made with love by Pavel</div>
+  <div class="footer">❤️ Made with love by Pavel</div>
 
   <script>
-  function generateButtonCode() {
-    const buttonText = document.getElementById("callToAction").value;
-    const phone = document.getElementById("phoneNumber").value;
-    const prefill = encodeURIComponent(document.getElementById("prefillMessage").value);
-    const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${prefill}`;
+    function generateButtonCode() {
+      const buttonText = document.getElementById("callToAction").value;
+      const phone = document.getElementById("phoneNumber").value;
+      const prefill = encodeURIComponent(document.getElementById("prefillMessage").value);
+      const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${prefill}`;
 
-    const brandName = document.getElementById("brandName").value;
-    const brandSubtitle = document.getElementById("brandSubtitleText").value;
-    const brandImageUrl = document.getElementById("brandImageUrl").value;
+      const brandName = document.getElementById("brandName").value;
+      const brandSubtitle = document.getElementById("brandSubtitleText").value;
+      const brandImageUrl = document.getElementById("brandImageUrl").value;
 
-    const buttonSize = document.getElementById("buttonSize").value;
-    const buttonIconSize = document.getElementById("buttonIconSize").value;
-    const buttonPosition = document.getElementById("buttonPosition").value;
+      const buttonSize = document.getElementById("buttonSize").value;
+      const buttonIconSize = document.getElementById("buttonIconSize").value;
+      const buttonPosition = document.getElementById("buttonPosition").value;
 
-    // Padding based on size
-    const paddingMap = {
-      small: "6px 12px",
-      medium: "10px 16px",
-      large: "14px 20px"
-    };
+      const paddingMap = {
+        small: "6px 12px",
+        medium: "10px 16px",
+        large: "14px 20px"
+      };
 
-    const widgetHTML = `
+      const widgetHTML = `
 <!-- WhatsApp Widget -->
 <div class="wa-widget" style="position:fixed;bottom:20px;${buttonPosition}:20px;z-index:9999;font-family:sans-serif;">
   <div class="wa-profile" style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <img src="${brandImageUrl}" class="wa-avatar" style="width:40px;height:40px;border-radius:50%;" />
+    <img src="${brandImageUrl}" style="width:40px;height:40px;border-radius:50%;" />
     <div>
-      <div class="wa-name" style="font-weight:bold;">${brandName}</div>
-      <div class="wa-subtitle" style="font-size:12px;color:gray;">${brandSubtitle}</div>
+      <div style="font-weight:bold;">${brandName}</div>
+      <div style="font-size:12px;color:gray;">${brandSubtitle}</div>
     </div>
   </div>
-  <a href="${waUrl}" 
+  <a href="${waUrl}" target="_blank"
      style="display:inline-block;padding:${paddingMap[buttonSize]};font-size:${buttonIconSize}px;background:#25D366;color:white;text-decoration:none;border-radius:8px;">
      ${buttonText}
   </a>
@@ -138,9 +132,16 @@
 <!-- End WhatsApp Widget -->
 `;
 
-    document.getElementById("output").value = widgetHTML;
-  }
-</script>
+      document.getElementById("output").value = widgetHTML.trim();
+    }
+
+    function copyCode() {
+      const output = document.getElementById("output");
+      output.select();
+      document.execCommand("copy");
+      alert("Copied to clipboard!");
+    }
+  </script>
 
 </body>
 </html>
