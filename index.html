@@ -99,40 +99,48 @@
   <div class="footer">💜 Made with love by Pavel</div>
 
   <script>
-    document.getElementById("waForm").addEventListener("submit", function(e) {
-      e.preventDefault();
+  function generateButtonCode() {
+    const buttonText = document.getElementById("callToAction").value;
+    const phone = document.getElementById("phoneNumber").value;
+    const prefill = encodeURIComponent(document.getElementById("prefillMessage").value);
+    const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${prefill}`;
 
-      const phone = document.getElementById("phoneNumber").value;
-  const prefill = encodeURIComponent(document.getElementById("prefillMessage").value);
-  const callToAction = document.getElementById("callToAction").value;
-  const buttonIconSize = document.getElementById("buttonIconSize").value;
-  const buttonSize = document.getElementById("buttonSize").value;
-  const buttonPosition = document.getElementById("buttonPosition").value;
+    const brandName = document.getElementById("brandName").value;
+    const brandSubtitle = document.getElementById("brandSubtitleText").value;
+    const brandImageUrl = document.getElementById("brandImageUrl").value;
 
-  const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${prefill}`;
-  
-  const buttonHTML = `
-<!-- WhatsApp Button -->
-<div style="position: fixed; bottom: 20px; ${buttonPosition}: 20px; z-index: 1000;">
-  <a href="${waUrl}" target="_blank" rel="noopener noreferrer"
-     style="display:inline-block;padding:${buttonSize === 'small' ? '8px 14px' : buttonSize === 'large' ? '16px 26px' : '12px 20px'};background:#25D366;color:white;text-decoration:none;border-radius:8px;font-family:sans-serif;font-size:${buttonIconSize}px;box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
-     ${callToAction}
+    const buttonSize = document.getElementById("buttonSize").value;
+    const buttonIconSize = document.getElementById("buttonIconSize").value;
+    const buttonPosition = document.getElementById("buttonPosition").value;
+
+    // Padding based on size
+    const paddingMap = {
+      small: "6px 12px",
+      medium: "10px 16px",
+      large: "14px 20px"
+    };
+
+    const widgetHTML = `
+<!-- WhatsApp Widget -->
+<div class="wa-widget" style="position:fixed;bottom:20px;${buttonPosition}:20px;z-index:9999;font-family:sans-serif;">
+  <div class="wa-profile" style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+    <img src="${brandImageUrl}" class="wa-avatar" style="width:40px;height:40px;border-radius:50%;" />
+    <div>
+      <div class="wa-name" style="font-weight:bold;">${brandName}</div>
+      <div class="wa-subtitle" style="font-size:12px;color:gray;">${brandSubtitle}</div>
+    </div>
+  </div>
+  <a href="${waUrl}" 
+     style="display:inline-block;padding:${paddingMap[buttonSize]};font-size:${buttonIconSize}px;background:#25D366;color:white;text-decoration:none;border-radius:8px;">
+     ${buttonText}
   </a>
 </div>
-<!-- End WhatsApp Button -->
+<!-- End WhatsApp Widget -->
 `;
 
-      document.getElementById("output").value = buttonHTML;
-      document.getElementById("buttonPreview").innerHTML = buttonHTML;
-    });
-
-    document.getElementById("copyBtn").addEventListener("click", function() {
-      const output = document.getElementById("output");
-      output.select();
-      document.execCommand("copy");
-      alert("Code copied to clipboard!");
-    });
-  </script>
+    document.getElementById("output").value = widgetHTML;
+  }
+</script>
 
 </body>
 </html>
