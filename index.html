@@ -109,6 +109,7 @@
       const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${prefill}`;
       const buttonHTML = `
 <!-- WhatsApp Button -->
+<div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
 <a href="${waUrl}" target="_blank" rel="noopener noreferrer"
    style="display:inline-block;padding:12px 20px;background:#25D366;color:white;text-decoration:none;border-radius:8px;font-family:sans-serif;">
    ${callToAction}
