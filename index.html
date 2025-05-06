@@ -4,7 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>WhatsApp Button Generator</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 0.3rem;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 10px 20px;
+      background-color: #25D366;
+      border: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .footer {
+      margin-top: 2rem;
+      font-size: 14px;
+      text-align: center;
+      color: #666;
+    }
+    #buttonPreview {
+      margin-top: 1.5rem;
+    }
+  </style>
 </head>
 <body>
   <h1>WhatsApp Button Generator</h1>
@@ -51,12 +88,15 @@
     <textarea id="prefillMessage">Hi, I want to chat with you.</textarea>
 
     <button type="submit">Generate Button Code</button>
-
-    <label>Generated Code</label>
-    <textarea id="output" rows="8"></textarea>
   </form>
 
-  <div class="footer">❤️ Made with love by Pavel</div>
+  <label style="margin-top: 1rem;">Generated Code</label>
+  <textarea id="output" rows="8" readonly></textarea>
+  <button id="copyBtn">Copy Code</button>
+
+  <div id="buttonPreview"></div>
+
+  <div class="footer">💜 Made with love by Pavel</div>
 
   <script>
     document.getElementById("waForm").addEventListener("submit", function(e) {
@@ -69,7 +109,7 @@
       const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${prefill}`;
       const buttonHTML = `
 <!-- WhatsApp Button -->
-<a href="${waUrl}" 
+<a href="${waUrl}" target="_blank" rel="noopener noreferrer"
    style="display:inline-block;padding:12px 20px;background:#25D366;color:white;text-decoration:none;border-radius:8px;font-family:sans-serif;">
    ${callToAction}
 </a>
@@ -77,6 +117,14 @@
 `;
 
       document.getElementById("output").value = buttonHTML;
+      document.getElementById("buttonPreview").innerHTML = buttonHTML;
+    });
+
+    document.getElementById("copyBtn").addEventListener("click", function() {
+      const output = document.getElementById("output");
+      output.select();
+      document.execCommand("copy");
+      alert("Code copied to clipboard!");
     });
   </script>
 
