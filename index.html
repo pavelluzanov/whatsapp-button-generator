@@ -50,15 +50,33 @@
     <label>Prefill Message</label>
     <textarea id="prefillMessage">Hi, I want to chat with you.</textarea>
 
-    <button type="submit">Generate Button Code</button>
-  </form>
+    <button onclick="generateButtonCode()">Generate Button Code</button>
 
-  <div id="result" style="display:none;">
-    <h3>Generated Code</h3>
-    <textarea id="outputCode" rows="10" readonly></textarea>
-    <button onclick="copyScript()">Copy Code</button>
-  </div>
+  <label>Generated Code</label>
+  <textarea id="output" rows="8"></textarea>
 
-  <script src="script.js"></script>
+  <div class="footer">❤️ Made with love by Pavel</div>
+
+  <script>
+    function generateButtonCode() {
+      const phone = document.getElementById("phone").value;
+      const prefill = encodeURIComponent(document.getElementById("prefill").value);
+      const callToAction = document.getElementById("cta").value;
+
+      const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${prefill}`;
+      const buttonHTML = `
+<!-- WhatsApp Button -->
+<a href="${waUrl}" 
+   style="display:inline-block;padding:12px 20px;background:#25D366;color:white;text-decoration:none;border-radius:8px;font-family:sans-serif;">
+   ${callToAction}
+</a>
+<!-- End WhatsApp Button -->
+`;
+
+      document.getElementById("output").value = buttonHTML;
+    }
+  </script>
+
 </body>
+</html>
 </html>
