@@ -103,17 +103,22 @@
       e.preventDefault();
 
       const phone = document.getElementById("phoneNumber").value;
-      const prefill = encodeURIComponent(document.getElementById("prefillMessage").value);
-      const callToAction = document.getElementById("callToAction").value;
+  const prefill = encodeURIComponent(document.getElementById("prefillMessage").value);
+  const callToAction = document.getElementById("callToAction").value;
+  const buttonIconSize = document.getElementById("buttonIconSize").value;
+  const buttonSize = document.getElementById("buttonSize").value;
+  const buttonPosition = document.getElementById("buttonPosition").value;
 
-      const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${prefill}`;
-      const buttonHTML = `
+  const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${prefill}`;
+  
+  const buttonHTML = `
 <!-- WhatsApp Button -->
-<div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-<a href="${waUrl}" target="_blank" rel="noopener noreferrer"
-   style="display:inline-block;padding:12px 20px;background:#25D366;color:white;text-decoration:none;border-radius:8px;font-family:sans-serif;">
-   ${callToAction}
-</a>
+<div style="position: fixed; bottom: 20px; ${buttonPosition}: 20px; z-index: 1000;">
+  <a href="${waUrl}" target="_blank" rel="noopener noreferrer"
+     style="display:inline-block;padding:${buttonSize === 'small' ? '8px 14px' : buttonSize === 'large' ? '16px 26px' : '12px 20px'};background:#25D366;color:white;text-decoration:none;border-radius:8px;font-family:sans-serif;font-size:${buttonIconSize}px;box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+     ${callToAction}
+  </a>
+</div>
 <!-- End WhatsApp Button -->
 `;
 
